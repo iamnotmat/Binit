@@ -2,14 +2,74 @@ var audio = new Audio('Audio/drag_sound.mp3');
 
 let score = 0; // Global variable to store the score
 var draggedImgId; // Global variable to store the id of the dragged image
-let directory = "Images/Waste/"; // Directory of the images
-let bins = ["glass", "paper", "plastic", "metal", "organic", "hazardous", "e-waste", "general"]; // Array of the bins
+let waste_dir = "Images/Waste/"; // Dir of the images
 
+let bins_dir = "Images/Bins/"; // Dir of the bins
+const bins = [
+  {id: "organic", src: "Organic.png", width: "100", height: "180"},
+  {id: "glass", src: "Glass.png", width: "100", height: "180"},
+  {id: "metal", src: "Metal.png", width: "90", height: "170"},
+  {id: "plastic", src: "Plastic.png", width: "100", height: "180"},
+  {id: "paper", src: "Paper.png", width: "100", height: "180"},
+  {id: "e-waste", src: "E-Waste.png", width: "100", height: "180"},
+  {id: "hazardous", src: "hazard.png", width: "160", height: "180"},
+  {id: "general", src: "general.png", width: "120", height: "170"}
+];
 
-window.onload = showImage; // Show an image when the page loads
+window.onload = () => {
+  makeBins();
+  showImage();
+}
+
+function makeBins()
+{
+    const binsContainer = document.getElementById("bins");
+
+  const binsRow = document.createElement("tr");
+
+  bins.forEach(bin => {
+    const binImage = document.createElement("img");
+    binImage.id = bin.id;
+    binImage.classList.add("droppable");
+    binImage.src = bins_dir + bin.src;
+    binImage.width = bin.width;
+    binImage.height = bin.height;
+
+    const binCell = document.createElement("td");
+    binCell.appendChild(binImage);
+
+    binsRow.appendChild(binCell);
+  });
+
+  binsContainer.appendChild(binsRow);
+}
 
 function getRandomInt(max) { // number between 1 & max
     return (Math.floor(Math.random() * Math.floor(max))) + 1;
+}
+
+function showImage() {
+  // Get a random image
+  let bin = getRandomInt(8);
+  draggedImgId = bins[bin - 1].id;
+  let waste_n = getRandomInt(1);
+  let waste = waste_dir + draggedImgId + waste_n + ".png";
+
+  $("#randomImage")[0].src = waste; // Change the src the first DOM element with the id "randomImage" (Using JQuery)
+  // Equivalent to document.getElementById("randomImage").src = waste;
+
+  // Reset the position of the draggable element
+  setTimeout(() => {
+      $(".draggable").show();
+      $(".draggable").css({
+          "position": "fixed",
+          "top": "calc(20%)",
+          "left": "calc(50% - 100px)",
+      });
+  }, 250);
+
+  // Start the timer
+  timer();
 }
 
 let timeLeft = 3; // Time left in seconds
@@ -43,30 +103,6 @@ function timer() {
             });
         }
     }, 1000);
-}
-
-function showImage() {
-    // Get a random image
-    let bin = getRandomInt(8);
-    draggedImgId = bins[bin - 1];
-    let waste_n = getRandomInt(1);
-    let waste = directory + draggedImgId + waste_n + ".png";
-
-    $("#randomImage")[0].src = waste; // Change the src the first DOM element with the id "randomImage" (Using JQuery)
-    // Equivalent to document.getElementById("randomImage").src = waste;
-
-    // Reset the position of the draggable element
-    setTimeout(() => {
-        $(".draggable").show();
-        $(".draggable").css({
-            "position": "fixed",
-            "top": "calc(20%)",
-            "left": "calc(50% - 100px)",
-        });
-    }, 250);
-
-    // Start the timer
-    timer();
 }
 
 $(function() {

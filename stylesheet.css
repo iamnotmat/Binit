@@ -33,7 +33,7 @@ h1 {
     position: absolute;
     top: calc(20%);
     left: calc(50% - 100px);
-    z-index: 9999;
+    z-index: 9998;
     width: 200px;
     height: 200px;
     overflow: visible;
@@ -49,6 +49,7 @@ h1 {
     height: auto;
     max-width: 100%;
     max-height: 100%;
+    z-index: 9998;
     margin: auto;
     object-fit: contain;
 }
