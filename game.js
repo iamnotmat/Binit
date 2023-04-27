@@ -19,19 +19,28 @@ function timer() {
         timeLeft--;
 
         if (timeLeft < 0) {
-            $("#timer").text("Time: 3");
-            timeLeft = 3;
+            $("#timer").text("Timeout");
+            clearInterval(countdown);
+            
             // Game over
-            alert("Game over! Your final score is " + score);
+            // Show the game over modal
+            const modal = document.getElementById('game-over-modal');
+            modal.style.display = 'block';
 
-            if (confirm("Play again?")) {
-                // Restart the game
-                score = 0;
-                $("#score").text("Score: 0");
-                timeLeft = 3;
-                clearInterval(countdown);
-                showImage();
-            }
+            // Update the score in the modal
+            $("#final-score").text(score);
+
+            // Add an event listener to the play again button that reloads the page
+            const playAgainButton = document.getElementById('play-again-button');
+            playAgainButton.addEventListener('click', () => {
+              location.reload();
+            });
+
+            // Add an event listener to the close button that hides the modal
+            const closeButton = document.getElementsByClassName('close')[0];
+            closeButton.addEventListener('click', () => {
+              modal.style.display = 'none';
+            });
         }
     }, 1000);
 }
@@ -41,7 +50,7 @@ function showImage() {
     let bin = getRandomInt(8);
     draggedImgId = bins[bin - 1];
     let waste_n = getRandomInt(1);
-    let waste = directory + bins[bin - 1] + waste_n + ".png";
+    let waste = directory + draggedImgId + waste_n + ".png";
 
     $("#randomImage")[0].src = waste; // Change the src the first DOM element with the id "randomImage" (Using JQuery)
     // Equivalent to document.getElementById("randomImage").src = waste;
