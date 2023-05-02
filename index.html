@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="index.css">
+        <script>
+            function switchTab(tabUrl, clickedTab) 
+            {
+                var tabs = document.querySelectorAll('.topnav a');
+                for (var i = 0; i < tabs.length; i++) 
+                {
+                    tabs[i].classList.remove('active');
+                }
+                clickedTab.classList.add('active');
+                document.querySelector('iframe').src = tabUrl;
+            }
+        </script>
+    </head>
+    
+    <body>
+        <div class="topnav">
+            <a class="active" onclick="switchTab('Game/game.html', this)">Game</a>
+            <a onclick="switchTab('Scoreboard/scoreboard.php', this)">Scoreboard</a>
+        </div>
+    
+        <iframe src="Game/game.html"></iframe>
+    </body>
+</html>

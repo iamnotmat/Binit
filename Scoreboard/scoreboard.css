@@ -1,0 +1,40 @@
+@font-face {
+  font-family: Bold;
+  src: url('../Fonts/ProductSansBold.ttf');
+}
+@font-face {
+  font-family: Regular;
+  src: url('../Fonts/ProductSansRegular.ttf');
+}
+body {
+  background-color: #F0EFEF;
+  font-family: Regular;
+  color: #696969;
+}
+h1{
+  text-align: center;
+  font-size: 4vw;
+}
+h2 {
+  text-align: center;
+  font-size: 2.4vw;
+  font-family: Regular;
+  margin-left: 20px;
+}
+table {
+  width: 50%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  border-radius: 10px;
+}
+.table-container {
+  display: flex;
+  flex-direction: row;
+}
+th, td {
+  padding: 10px;
+  text-align: center;
+}
+th {
+  background-color: #f2f2f2;
+}
