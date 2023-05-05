@@ -7,14 +7,27 @@ $score = $_POST['score'];
 // Connect to the database
 $conn = mysqli_connect('sql112.epizy.com', 'epiz_33814679', '6J6Q52XHDpNT1', 'epiz_33814679_waste_ranking');
 
-// Insert the data into the database
-$timestamp = date('Y-m-d H:i:s');
-$sql = "INSERT INTO Players (mode, username, score, timestamp) VALUES ('$mode', '$username', '$score', '$timestamp')";
+// Check if the username is already present in the database
+$sql = "SELECT * FROM Players WHERE username='$username'";
 $result = mysqli_query($conn, $sql);
+
+// If the username is not present, insert the data into the database
+if(mysqli_num_rows($result) == 0) {
+    $timestamp = date('Y-m-d H:i:s');
+    $sql = "INSERT INTO Players (mode, username, score, timestamp) VALUES ('$mode', '$username', '$score', '$timestamp')";
+    mysqli_query($conn, $sql);
+    echo "Data inserted successfully!";
+}
+// If the username is already present, update the score only if the new score is higher
+else {
+    $row = mysqli_fetch_assoc($result);
+    if($score > $row['score']) {
+        $sql = "UPDATE Players SET score='$score', mode='$mode' WHERE username='$username'";
+        mysqli_query($conn, $sql);
+        echo "New high score achieved!";
+    }
+}
 
 // Close the database connection
 mysqli_close($conn);
-
-// Send a response back to the client
-echo "Data inserted successfully!";
 ?>

@@ -25,12 +25,20 @@ window.onload = () => {
 
     normalButton.addEventListener('click', () => {
         mode = 'normal';
-        startGame();
+        if (document.getElementById('username-input').value == "") {
+            alert("Please enter a nickname!");
+            return;
+        }
+        else startGame();
     });
 
     shuffleButton.addEventListener('click', () => {
         mode = 'shuffle';
-        startGame();
+        if (document.getElementById('username-input').value == "") {
+            alert("Please enter a nickname!");
+            return;
+        }
+        else startGame();
     });
 
     const startGame = () => {
@@ -59,15 +67,19 @@ function saveScoreToDatabase() {
         score: score,
     };
 
-    // Send the data to PHP
-    sendDataToPHP(scoreData);
+     // Send the data to PHP and pass a callback function to handle the response
+     sendDataToPHP(scoreData, function(response) {
+        // Update the message element with the response from the server
+        const messageElement = document.getElementById('message');
+        messageElement.textContent = response;
+    });
 }
 
-function sendDataToPHP(scoreData) {
+function sendDataToPHP(scoreData, callback) {
     // Use jQuery to send a POST request to the PHP script
     $.post("save_score.php", scoreData, function(response) {
         // Log the response from the PHP script
-        console.log(response);
+        callback(response);
     });
 }
 
@@ -94,19 +106,7 @@ function timer() {
             $("#final-score").text(score);
 
             // Send the data to the server
-            const saveData = document.getElementById('submit-button');
-            saveData.addEventListener('click', () => {
-                if (document.getElementById('username-input').value == "") {
-                    alert("Please enter a nickname!");
-                    return;
-                }
-                const confirmed = confirm("Are you sure you want to save the score to the database?");
-                if (confirmed) {
-                    saveData.disabled = true; // disable the button to prevent multiple submissions
-                    saveScoreToDatabase();
-                    alert("Score saved successfully!");
-                }
-            });
+            saveScoreToDatabase();
 
             // Add an event listener to the play again button that reloads the page
             const playAgainButton = document.getElementById('play-again-button');
@@ -152,7 +152,7 @@ function showImage() {
         $(".draggable").show();
         $(".draggable").css({
             "position": "fixed",
-            "top": "calc(20%)",
+            "top": "calc(25%)",
             "left": "calc(37.5%)"
         });
     }, 250);

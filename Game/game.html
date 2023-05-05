@@ -14,7 +14,6 @@
 		<h1>Binit!</h1>
 		<p style="text-align: center; font-size: 1.8vw;;">Drag the waste to the correct bin</p>
 		  
-		<br>
         <div class="draggable">
             <img id="randomImage">
         </div>
@@ -42,20 +41,25 @@
 			<div class="modal-content">
 			  	<span class="close">&times;</span>
 			  	<h2>Your Score: <span id="final-score"></span></h2>
-				
-			  	<input type="text" id="username-input" class="username-input" placeholder="Enter your nickname to save data"/> 
-				
-			  	<button id="submit-button" class="submit">Submit</button>
-			  	<br><br><br>
+
+				<p id="message"></p>
+
 			  	<button id="play-again-button" class="play-again">Play Again</button>
 			</div>
 		</div>
 
 		<div id="start-modal" class="start">
 			<h2>Select a mode:</h2>
+			
 			<div class="mode-buttons">
 				<button id="normal-mode">Normal</button>
 				<button id="shuffle-mode">Shuffle</button>
+			</div>
+
+			<br><br><br><br>
+
+			<div class="username">
+				<input type="text" id="username-input" class="username-input" placeholder="Enter your nickname to save data"/> 
 			</div>
 		</div>		
 
