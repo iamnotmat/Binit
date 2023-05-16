@@ -6,6 +6,8 @@ The aim of this project is to provide an example of an interactive webpage creat
 
 If you are learning the basics of web development, Binit can be a great example to study and practice your skills.
 
+![Logo](https://github.com/iamnotmat/Binit/assets/75623519/a66e4598-b795-4e62-8cc7-0d94e057c206)
+
 ---
 
 ## Play
