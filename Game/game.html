@@ -13,41 +13,8 @@
     <body>
 		<h1>Binit!</h1>
 		<p style="text-align: center; font-size: 1.8vw;;">Drag the waste to the correct bin</p>
-		  
-        <div class="draggable">
-            <img id="randomImage">
-        </div>
-
-        
-		<table class="bins">
-			<tr>
-			  <td><img id="organic" class="droppable" src="../Images/Bins/Organic.png"></td>
-			  <td><img id="glass" class="droppable" src="../Images/Bins/Glass.png"></td>
-			  <td><img id="metal" class="droppable" src="../Images/Bins/Metal.png"></td>
-			  <td><img id="plastic" class="droppable" src="../Images/Bins/Plastic.png"></td>
-			  <td><img id="paper" class="droppable" src="../Images/Bins/Paper.png"></td>
-			  <td><img id="e-waste" class="droppable" src="../Images/Bins/E-Waste.png"></td>
-			  <td><img id="hazardous" class="droppable" src="../Images/Bins/hazard.png"></td>
-			  <td><img id="general" class="droppable" src="../Images/Bins/general.png"></td>
-			</tr>
-		</table>
 		
-		<br>
-		<div id="score" style="font-size: 2vw;">Score: 0</div>
-		<br>
-		<div id="timer" style="font-size: 2vw;">Time: 3</div>
-
-		<div id="game-over-modal" class="modal">
-			<div class="modal-content">
-			  	<span class="close">&times;</span>
-			  	<h2>Your Score: <span id="final-score"></span></h2>
-
-				<p id="message"></p>
-
-			  	<button id="play-again-button" class="play-again">Play Again</button>
-			</div>
-		</div>
-
+		// The start modal
 		<div id="start-modal" class="start">
 			<h2>Select a mode:</h2>
 			
@@ -61,7 +28,44 @@
 			<div class="username">
 				<input type="text" id="username-input" class="username-input" placeholder="Enter your nickname to save data"/> 
 			</div>
-		</div>		
+		</div>	
+		
+		// The draggable waste 
+        <div class="draggable">
+            <img id="randomImage">
+        </div>
+
+        // The bins
+		<table class="bins">
+			<tr>
+			  <td><img id="organic" class="droppable" src="../Images/Bins/Organic.png"></td>
+			  <td><img id="glass" class="droppable" src="../Images/Bins/Glass.png"></td>
+			  <td><img id="metal" class="droppable" src="../Images/Bins/Metal.png"></td>
+			  <td><img id="plastic" class="droppable" src="../Images/Bins/Plastic.png"></td>
+			  <td><img id="paper" class="droppable" src="../Images/Bins/Paper.png"></td>
+			  <td><img id="e-waste" class="droppable" src="../Images/Bins/E-Waste.png"></td>
+			  <td><img id="hazardous" class="droppable" src="../Images/Bins/hazard.png"></td>
+			  <td><img id="general" class="droppable" src="../Images/Bins/general.png"></td>
+			</tr>
+		</table>
+		
+		// The score and timer
+		<br>
+		<div id="score" style="font-size: 2vw;">Score: 0</div>
+		<br>
+		<div id="timer" style="font-size: 2vw;">Time: 3</div>
+
+		// The game over modal
+		<div id="game-over-modal" class="modal">
+			<div class="modal-content">
+			  	<span class="close">&times;</span>
+			  	<h2>Your Score: <span id="final-score"></span></h2>
+
+				<p id="message"></p>
+
+			  	<button id="play-again-button" class="play-again">Play Again</button>
+			</div>
+		</div>	
 
     </body>
 </html>
