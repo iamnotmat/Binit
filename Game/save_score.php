@@ -4,15 +4,18 @@
     $username = $_POST['username'];
     $score = $_POST['score'];
 
+    // Get the current timestamp
+    $timestamp = date('Y-m-d H:i:s');
+
+    // Additional check
+    if (empty($mode) && empty($username)) echo "Mode and username cannot be empty!";
+
     // Connect to the database (host, username, password, database_name)
     $conn = mysqli_connect('', '', '', '');
 
     // Check if the username is already present in the database
     $sql = "SELECT * FROM Players WHERE username='$username'";
     $result = mysqli_query($conn, $sql);
-
-    // Get the current timestamp
-    $timestamp = date('Y-m-d H:i:s');
 
     // If the username is not present, insert the data into the database
     if(mysqli_num_rows($result) == 0) 
