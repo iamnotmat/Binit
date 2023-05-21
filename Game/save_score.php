@@ -8,7 +8,11 @@
     $timestamp = date('Y-m-d H:i:s');
 
     // Additional check
-    if (empty($mode) && empty($username)) echo "Mode and username cannot be empty!";
+    if (empty($mode) || empty($username)) 
+    {
+        echo "Mode and username cannot be empty!";
+        exit();
+    }
 
     // Connect to the database (host, username, password, database_name)
     $conn = mysqli_connect('', '', '', '');
